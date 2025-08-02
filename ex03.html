@@ -1,0 +1,419 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Aura Studio</title>
+  <link rel="stylesheet" href="styles.css" />
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background-image: url('0.jpg');
+      background-size: cover;
+      background-repeat: no-repeat;
+      background-attachment: fixed;
+      background-position: center;
+      color: #ccc;
+    }
+    .main-header {
+      background-color: rgba(0, 0, 0, 0.7);
+      padding: 20px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
+    }
+    .main-header h1 {
+      color: #b366ff;
+      font-size: 28px;
+    }
+    .main-header input[type="text"] {
+      padding: 8px;
+      border-radius: 20px;
+      border: none;
+    }
+    .banner-image {
+      width: 100%;
+      height: 300px;
+      object-fit: cover;
+      display: block;
+    }
+    .welcome {
+      background-color: rgba(0, 0, 0, 0.6);
+      padding: 30px;
+      text-align: center;
+      font-size: 18px;
+    }
+    .estimation,
+    .contact-form,
+    .photographers,
+    .offers {
+      background-color: rgba(0, 0, 0, 0.8);
+      padding: 40px 20px;
+      text-align: center;
+    }
+    .estimation h2,
+    .contact-form h2,
+    .photographers h2,
+    .offers h2 {
+      color: #b366ff;
+      margin-bottom: 25px;
+      font-size: 26px;
+    }
+    .dropdown-group,
+    .dropdown-area {
+      max-width: 700px;
+      margin: auto;
+      text-align: left;
+    }
+    .dropdown-btn,
+    .toggle-btn {
+      width: 100%;
+      background-color: rgba(255, 255, 255, 0.1);
+      color: #ffccff;
+      padding: 15px;
+      font-size: 18px;
+      border: none;
+      text-align: left;
+      cursor: pointer;
+      outline: none;
+      border-radius: 10px;
+      margin-bottom: 10px;
+      transition: background-color 0.3s;
+    }
+    .dropdown-btn:hover,
+    .toggle-btn:hover {
+      background-color: rgba(255, 255, 255, 0.2);
+    }
+    .dropdown-content,
+    .toggle-content {
+      display: none;
+      background-color: rgba(255, 255, 255, 0.08);
+      margin-bottom: 15px;
+      padding: 15px 20px;
+      border-left: 4px solid #b366ff;
+      border-radius: 10px;
+      color: #ccc;
+    }
+    .dropdown-content ul,
+    .toggle-content ul {
+      margin: 0;
+      padding-left: 20px;
+    }
+    .dropdown-content ul li,
+    .toggle-content ul li {
+      margin: 8px 0;
+    }
+    .contact-form form {
+      max-width: 600px;
+      margin: auto;
+      display: flex;
+      flex-direction: column;
+      gap: 15px;
+    }
+    .form-group input,
+    .form-group select,
+    .form-group textarea {
+      width: 100%;
+      padding: 12px;
+      border-radius: 8px;
+      border: none;
+      font-size: 16px;
+      background-color: rgba(255, 255, 255, 0.1);
+      color: #fff;
+    }
+    .form-group textarea {
+      resize: vertical;
+    }
+    .form-group button {
+      background-color: #b366ff;
+      color: #fff;
+      padding: 12px;
+      border: none;
+      border-radius: 8px;
+      font-size: 16px;
+      cursor: pointer;
+      transition: background-color 0.3s;
+    }
+    .form-group button:hover {
+      background-color: #9933ff;
+    }
+    .gallery {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 15px;
+      padding: 20px;
+    }
+    .gallery-item {
+      height: 250px;
+      background-size: cover;
+      background-position: center;
+      position: relative;
+      border-radius: 10px;
+      overflow: hidden;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.6);
+      opacity: 0.95;
+      transition: transform 0.3s;
+    }
+    .gallery-item:hover {
+      transform: scale(1.05);
+    }
+    .caption {
+      position: absolute;
+      bottom: 10px;
+      left: 0;
+      right: 0;
+      text-align: center;
+      background-color: rgba(0, 0, 0, 0.5);
+      padding: 10px;
+      color: #fff;
+      font-weight: bold;
+    }
+    .feature {
+      padding: 40px 20px;
+      display: flex;
+      flex-direction: column;
+      gap: 30px;
+    }
+    .feature-box {
+      display: flex;
+      align-items: center;
+      gap: 20px;
+      background-color: rgba(0,0,0,0.5);
+      padding: 20px;
+      border-radius: 12px;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.6);
+    }
+    .feature-box.reverse {
+      flex-direction: row-reverse;
+    }
+    .feature-box img {
+      width: 300px;
+      height: 200px;
+      object-fit: cover;
+      border-radius: 10px;
+    }
+    footer {
+      background-color: #1a1a1a;
+      color: #b366ff;
+      text-align: center;
+      padding: 15px;
+      box-shadow: 0 -4px 10px rgba(0, 0, 0, 0.5);
+    }
+  </style>
+</head>
+<body>
+
+<header class="main-header">
+  <div class="header-left">
+    <h1>AURA STUDIO</h1>
+  </div>
+  <div class="header-right">
+    <input type="text" placeholder="Search..." />
+  </div>
+</header>
+
+<section class="banner">
+  <img src="i.jpg" alt="Banner" class="banner-image">
+</section>
+
+<section class="welcome">
+  <h2>Welcome to Aura Studio</h2>
+  <p>We specialize in capturing your most cherished moments—whether it's weddings, nature, or family portraits—with timeless artistry and professionalism.</p>
+</section>
+
+<section class="estimation">
+  <h2>Aura Studio Estimations</h2>
+  <div class="dropdown-group">
+    <button class="dropdown-btn">Wedding Photography</button>
+    <div class="dropdown-content">
+      <ul>
+        <li>⏱ Duration: 6–10 Hours</li>
+        <li>💰 Estimate: ₹30,000 – ₹80,000</li>
+        <li>📸 Includes Pre-Wedding + Album</li>
+        <li>🎞 Optional: Drone, Video Highlights</li>
+      </ul>
+    </div>
+    <button class="dropdown-btn">Baby & Kids Photography</button>
+    <div class="dropdown-content">
+      <ul>
+        <li>⏱ Duration: 2–4 Hours</li>
+        <li>💰 Estimate: ₹8,000 – ₹20,000</li>
+        <li>📸 Includes Props & Costumes</li>
+        <li>🎁 Optional: Framed Prints, Softcopy</li>
+      </ul>
+    </div>
+    <button class="dropdown-btn">Nature Photography</button>
+    <div class="dropdown-content">
+      <ul>
+        <li>⏱ Duration: Flexible (Half Day)</li>
+        <li>💰 Estimate: ₹5,000 – ₹15,000</li>
+        <li>📸 Includes Landscape & Macro Shots</li>
+        <li>🌄 Optional: Sunrise/Sunset Shoots</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<section class="contact-form">
+  <h2>Book Your Session</h2>
+  <form>
+    <div class="form-group">
+      <input type="text" name="name" placeholder="Full Name" required />
+    </div>
+    <div class="form-group">
+      <input type="email" name="email" placeholder="Email Address" required />
+    </div>
+    <div class="form-group">
+      <input type="tel" name="phone" placeholder="Contact Number" required />
+    </div>
+    <div class="form-group">
+      <select name="service" required>
+        <option value="">-- Select Photography Type --</option>
+        <option value="Wedding">Wedding Photography</option>
+        <option value="Baby">Baby & Kids Photography</option>
+        <option value="Nature">Nature Photography</option>
+      </select>
+    </div>
+    <div class="form-group">
+      <input type="date" name="date" required />
+    </div>
+    <div class="form-group">
+      <textarea name="message" rows="4" placeholder="Additional Notes"></textarea>
+    </div>
+    <div class="form-group">
+      <button type="submit">Submit</button>
+    </div>
+  </form>
+</section>
+
+<!-- Photographers Section -->
+<section class="photographers">
+  <h2>Our Photographers</h2>
+  <div class="dropdown-area">
+    <button class="toggle-btn">Wedding Photographers</button>
+    <div class="toggle-content">
+      <ul>
+        <li>📷 Rahul Sharma – Lead Wedding Photographer</li>
+        <li>📷 Ananya R. – Pre-Wedding & Candid Expert</li>
+        <li>📷 Mehul Jain – Drone & Traditional Events</li>
+      </ul>
+    </div>
+    <button class="toggle-btn">Baby & Kids Photographers</button>
+    <div class="toggle-content">
+      <ul>
+        <li>📷 Priya Kapoor – Newborn Specialist</li>
+        <li>📷 Arjun D. – Candid Kids Photography</li>
+        <li>📷 Neha R. – Props & Themes Expert</li>
+      </ul>
+    </div>
+    <button class="toggle-btn">Nature Photographers</button>
+    <div class="toggle-content">
+      <ul>
+        <li>📷 Anil K. – Wildlife & Forest Trails</li>
+        <li>📷 Swetha P. – Landscape Specialist</li>
+        <li>📷 Manoj Verma – Sunrise/Sunset Frames</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- Offers Section -->
+<section class="offers">
+  <h2>Exciting Offers</h2>
+  <div class="dropdown-area">
+    <button class="toggle-btn">August 2025 Offers</button>
+    <div class="toggle-content">
+      <ul>
+        <li>🎉 15% OFF on Wedding Albums</li>
+        <li>📦 Free Framed Print with Baby Photoshoot</li>
+        <li>🚁 Complimentary Drone Shots for Premium Package</li>
+      </ul>
+    </div>
+    <button class="toggle-btn">Festival Season Offers</button>
+    <div class="toggle-content">
+      <ul>
+        <li>🎊 20% OFF for Diwali Bookings</li>
+        <li>🕊️ 1-Hour Bonus Coverage for Nature Photography</li>
+        <li>🎁 Combo Discounts for Family + Baby Sessions</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<section class="gallery">
+  <div class="gallery-item" style="background-image: url('w1.jpg');">
+    <div class="caption">Wedding Moments</div>
+  </div>
+  <div class="gallery-item" style="background-image: url('b1.jpg');">
+    <div class="caption">Baby & Kids</div>
+  </div>
+  <div class="gallery-item" style="background-image: url('03.jpg');">
+    <div class="caption">Nature Photography</div>
+  </div>
+</section>
+
+<section class="feature">
+  <div class="feature-box">
+    <img src="w2.jpg" alt="Wedding" />
+    <div>
+      <h3>Weddings</h3>
+      <p>Elegant storytelling of your special day captured by our experienced wedding photographers.</p>
+    </div>
+  </div>
+  <div class="feature-box reverse">
+    <div>
+      <h3>Baby & Kids</h3>
+      <p>Adorable, candid shots of children and newborns in vibrant, happy environments.</p>
+    </div>
+    <img src="b2.jpg" alt="Kids" />
+  </div>
+  <div class="feature-box">
+    <img src="01.jpg" alt="Nature" />
+    <div>
+      <h3>Nature</h3>
+      <p>Immerse yourself in stunning natural landscapes captured in vivid detail.</p>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <p>&copy; 2025 Aura Studio. All rights reserved.</p>
+  <p>Terms of Service | Privacy Policy</p>
+</footer>
+
+<script>
+  const dropdowns = document.querySelectorAll('.dropdown-btn');
+  dropdowns.forEach((btn) => {
+    btn.addEventListener('click', () => {
+      const content = btn.nextElementSibling;
+      const isVisible = content.style.display === "block";
+      document.querySelectorAll('.dropdown-content').forEach(dc => dc.style.display = 'none');
+      content.style.display = isVisible ? "none" : "block";
+    });
+  });
+
+  const toggles = document.querySelectorAll('.toggle-btn');
+  toggles.forEach((btn) => {
+    btn.addEventListener('click', () => {
+      const content = btn.nextElementSibling;
+      const isVisible = content.style.display === "block";
+      document.querySelectorAll('.toggle-content').forEach(tc => tc.style.display = 'none');
+      content.style.display = isVisible ? "none" : "block";
+    });
+  });
+</script>
+
+</body>
+</html>
+
+
+
+
+
+
+
